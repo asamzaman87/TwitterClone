@@ -1,5 +1,5 @@
-# Weather Aggregator
-Weather Aggregator is an application which displays weather information and news for a particular region
+# Twitter Clone
+Twitter Clone is an application which mimics Twitter through AI and machine-learning models
 
 ## Setup
 ### Download Code
