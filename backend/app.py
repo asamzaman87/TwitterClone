@@ -18,7 +18,7 @@ tweetsdb = [
     "Can't get enough of fantasy novels. Currently lost in a magical world full of dragons and wizards! 🐉🧙‍♂️ #FantasyFiction #ReadingAdventure"
 ]
 
-interests = ['technology', 'food', 'movies']
+interests = input("Search: ")
 # sen = input("Sentence: ")
 def algorithm(tweetsdb):
     for i in tweetsdb:
