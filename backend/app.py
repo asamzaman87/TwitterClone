@@ -18,9 +18,20 @@ tweetsdb = [
     "Can't get enough of fantasy novels. Currently lost in a magical world full of dragons and wizards! 🐉🧙‍♂️ #FantasyFiction #ReadingAdventure"
 ]
 
-interests = input("Search: ")
 # sen = input("Sentence: ")
-def algorithm(tweetsdb):
+def next_step():
+    wyd = input("What do you want to do? (Search or POST or Cancel): ")
+    if wyd == 'search':
+        interests = input("Search: ")
+        algorithm(tweetsdb, interests)
+    elif wyd == 'post':
+        post()
+    elif wyd == 'cancel':
+        print("Goodbye")
+    else:
+        next_step()
+
+def algorithm(tweetsdb, interests):
     for i in tweetsdb:
         output = query({
             "inputs": i,
@@ -29,6 +40,7 @@ def algorithm(tweetsdb):
         for i in output['scores']:
             if (i > .7):
                 print(output['sequence'])
+    next_step()
 
 def query(payload):
     API_TOKEN = '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'
@@ -37,6 +49,15 @@ def query(payload):
     response = requests.post(API_URL, headers=headers, json=payload)
     return response.json()
 
+def post():
+    new_post = input("Do you want to post? Y/N?: ")
+    if new_post == 'y' or new_post == "Y":
+        new_twt = input("Enter Tweet: ")
+        tweetsdb.append(new_twt)
+        next_step()
+    elif new_post == 'n' or new_post == "N":
+        next_step()
+
 if __name__ == '__main__':
-    algorithm(tweetsdb)
+    next_step()
     # app.run()
