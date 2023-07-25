@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="header">
+        <form action="/explore" method="POST">
+            <input type="text" name="search" placeholder="Search Tweets">
+        </form>
+        <form action="/post" method="POST">
+            <input type="text" name="tweet-txt" placeholder="Enter Tweet Text">
+            <input type="text" name="tweet-img" placeholder="Enter Tweet Img">
+            <input type="submit" value="Post">
+        </form>
+        <a href="/dashboard">
+            <button>Home</button>
+        </a>
+    </div>
+    <div class="tweet-container">
+        <h1>Welcome, {{ current_user.username }}!</h1>
+        {% for tweet in tweets %}
+            <div class="tweet">
+                <img class="profile-image" src="{{ url_for('static', filename='img/user.png') }}" alt="profile image">
+                <div class="tweet-body">
+                    <p>{{ tweet.text }}</p>
+                    {% if tweet.img_url %}
+                        <img src="{{ tweet.img_url }}" alt="tweet image">
+                    {% endif %}
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
